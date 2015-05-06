@@ -32,7 +32,7 @@ def make_app(args):
     def send_feedback_mail(version, username, feedback, logcat):
         # noinspection PyBroadException
         try:
-            msg = Message(From="app@pr0gramm.com", To=args.receiver, charset="utf8")
+            msg = Message(From=username, To=args.receiver, charset="utf8")
             msg.Subject = u"Feedback {}".format(version)
             msg.Body = u"User: {}\nFeedback: {}\n\nLogcat: {}\n".format(username, feedback, logcat)
 
