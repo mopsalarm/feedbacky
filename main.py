@@ -33,7 +33,7 @@ def make_app(args):
         # noinspection PyBroadException
         try:
             msg = Message(From=args.user, To=args.receiver, charset="utf8")
-            msg.Subject = u"Feedback {}".format(version)
+            msg.Subject = u"Feedback {} ({})".format(version, username)
             msg.Body = u"User: {}\nFeedback: {}\n\nLogcat: {}\n".format(username, feedback, logcat)
 
             mailer = Mailer(args.host, port=587, use_tls=True, usr=args.user, pwd=args.password)
