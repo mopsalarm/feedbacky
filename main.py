@@ -22,7 +22,7 @@ def make_app(args):
     @app.route("/post", methods=["POST"])
     def post():
         version = request.form["version"]
-        username = request.form.get("username", "")
+        username = request.form.get("name", "")
         feedback = request.form.get("feedback", "")
         logcat = request.form.get("logcat", "")
 
