@@ -34,8 +34,7 @@ def make_app(args):
         try:
             msg = Message(From=args.user, To=args.receiver, charset="utf8")
             msg.Subject = u"Feedback {} ({})".format(version, username)
-            msg.Body = u"User: {0} http://pr0gramm.com/user/{0}\n"
-                "Feedback: {1}\n\nLogcat: {2}\n".format(username, feedback, logcat)
+            msg.Body = u"User: {0} http://pr0gramm.com/user/{0}\nFeedback: {1}\n\nLogcat: {2}\n".format(username, feedback, logcat)
 
             mailer = Mailer(args.host, port=587, use_tls=True, usr=args.user, pwd=args.password)
             mailer.send(msg)
