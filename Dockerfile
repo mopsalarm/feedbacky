@@ -1,7 +1,5 @@
-FROM python:2-onbuild
+FROM gliderlabs/python-runtime:3.4
 MAINTAINER Mopsalarm
 
-CMD python ./main.py --host=$HOST --user=$USER --password=$PASSWORD --receiver=$RECEIVER
-
 EXPOSE 5000
-
+CMD /env/bin/python /app/main.py --host=$HOST --user=$USER --password=$PASSWORD --receiver=$RECEIVER
