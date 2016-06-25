@@ -1,5 +1,7 @@
-import traceback
 import argparse
+import base64
+import traceback
+import zlib
 
 import flask
 from flask import request, jsonify
@@ -24,7 +26,12 @@ def make_app(args):
         version = request.form["version"]
         username = request.form.get("name", "")
         feedback = request.form.get("feedback", "")
-        logcat = request.form.get("logcat", "")
+
+        if "logcat64" in request.form:
+            logcat = base64.b64decode(request.form.get("logcat64"))
+            logcat = zlib.decompress(logcat, 32+15).decode("utf8")
+        else:
+            logcat = request.form.get("logcat", "")
 
         send_feedback_mail(version, username, feedback, logcat)
         return jsonify(success=True)
