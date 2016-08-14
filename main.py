@@ -10,6 +10,7 @@ from mailer import Mailer, Message
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--port", default=5000, type=int, help="Port to bind the http api to")
     parser.add_argument("--host", default="smtp.gmail.com", help="Host of the smtp server")
     parser.add_argument("--user", required=True, help="Username to use to login into the smtp server")
     parser.add_argument("--password", required=True, help="Password for the smtp server")
@@ -56,7 +57,7 @@ def main():
     args = parse_arguments()
 
     app = make_app(args)
-    app.run(host="0.0.0.0", debug=False)
+    app.run(host="0.0.0.0", port=args.port, debug=False)
 
 
 if __name__ == '__main__':
